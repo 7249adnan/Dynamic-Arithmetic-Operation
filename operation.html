@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        let arr_opt = [];
+        let opt;
+        let arr_L = [];
+        let arr_R = [];
+        let arr_O = [];
+
+        function mybreak() {
+
+            var lb1 = document.createElement("label");
+            lb1.innerText = " \n \n ";
+            document.body.appendChild(lb1);
+
+        }
+
+
+        function mylabel(txt) {
+
+            var lb = document.createElement("label");
+            lb.innerHTML = "  " + txt + "  ";
+            document.body.appendChild(lb);
+        }
+
+
+        const s1 = document.createElement("select");
+        s1.setAttribute("id", "mys1");
+
+        var opth = document.createElement("option");
+        opth.value = 0;
+        opth.text = " Select no's of operations  ";
+        s1.add(opth);
+
+        var opt1 = document.createElement("option");
+        opt1.value = 1;
+        opt1.text = " one ";
+        s1.add(opt1);
+
+        var opt2 = document.createElement("option");
+        opt2.value = 2;
+        opt2.text = " Two ";
+        s1.add(opt2);
+
+        var opt3 = document.createElement("option");
+        opt3.value = 3;
+        opt3.text = " Three ";
+        s1.add(opt3);
+
+        var opt4 = document.createElement("option");
+        opt4.value = 4;
+        opt4.text = " Four ";
+        s1.add(opt4);
+
+        s1.addEventListener("change", myfun)
+
+        document.body.appendChild(s1);
+
+        mybreak();
+
+
+        function myfun() {
+
+            //document.write(" <br> drop down menu  ");
+
+            let n = s1.value;;
+
+            for (i = 0; i < n; i++) {
+
+
+                var lb1 = document.createElement("label");
+                lb1.innerText = " Operation  " + (i + 1) + " : ";
+                document.body.appendChild(lb1);
+
+
+                const s2 = document.createElement("select");
+                s2.setAttribute("id", i);
+
+                var opth = document.createElement("option");
+                opth.value = 0;
+                opth.text = " choose operations  ";
+                s2.add(opth);
+
+                var opt1 = document.createElement("option");
+                opt1.value = 1;
+                opt1.text = " Add ";
+                s2.add(opt1);
+
+                var opt2 = document.createElement("option");
+                opt2.value = 2;
+                opt2.text = " Sub ";
+                s2.add(opt2);
+
+                var opt3 = document.createElement("option");
+                opt3.value = 3;
+                opt3.text = " Mul ";
+                s2.add(opt3);
+
+                var opt4 = document.createElement("option");
+                opt4.value = 4;
+                opt4.text = " Div ";
+                s2.add(opt4);
+
+                //s2.addEventListener("change", myfun)
+
+                document.body.appendChild(s2);
+                arr_opt.push(s2);
+
+                mybreak();
+
+            }
+
+
+            var btn = document.createElement("button");
+            btn.setAttribute("id", "mybtn");
+            btn.setAttribute("onclick", "crt_opt()");
+            btn.innerHTML = " Create <br> operation "
+            document.body.appendChild(btn);
+
+            mybreak();
+
+
+        }
+
+
+
+
+        function crt_opt() {
+
+            for (i = 0; i < arr_opt.length; i++) {
+
+
+
+                var txt_oprL = document.createElement("textarea");
+                txt_oprL.setAttribute("id", "mytxt_oprL" + i);
+                txt_oprL.setAttribute("rows", "1");
+                txt_oprL.addEventListener("input", myAns)
+
+                arr_L.push(txt_oprL);
+
+                document.body.appendChild(txt_oprL);
+
+
+                if (arr_opt[i].value == 1)
+                    mylabel(" &nbsp+ &nbsp ")
+                else if (arr_opt[i].value == 2)
+                    mylabel("&nbsp -&nbsp ")
+                else if (arr_opt[i].value == 3)
+                    mylabel("&nbsp X &nbsp")
+                else if (arr_opt[i].value == 4)
+                    mylabel("&nbsp / &nbsp")
+
+
+                var txt_oprR = document.createElement("textarea");
+                txt_oprR.setAttribute("id", "mytxt_oprR" + i);
+                txt_oprR.setAttribute("rows", "1");
+                txt_oprR.addEventListener("input", myAns)
+
+                arr_R.push(txt_oprR);
+
+                document.body.appendChild(txt_oprR);
+
+                mylabel(" &nbsp ")
+
+
+
+
+
+                mylabel(" = ")
+
+
+
+                var lb_op = document.createElement("label")
+                lb_op.setAttribute("id", "mylbop" + i)
+                lb_op.innerHTML = " Output ";
+                arr_O.push(lb_op);
+                document.body.appendChild(lb_op);
+
+
+
+
+
+                // mylabel(arr_opt[i].value);
+                mybreak();
+
+            }
+
+
+
+
+
+        }
+
+        function myAns() {
+
+            var ans;
+
+
+
+
+            for (i = 0; i < arr_opt.length; i++) {
+
+
+
+                let a = parseInt(arr_L[i].value);
+                let b = parseInt(arr_R[i].value);
+
+
+                if (arr_opt[i].value == 1)
+                    ans = a + b;
+
+                else if (arr_opt[i].value == 2)
+                    ans = a - b;
+
+                else if (arr_opt[i].value == 3)
+                    ans = a * b;
+
+                else if (arr_opt[i].value == 4)
+                    ans = a / b;
+
+                if (!(isNaN(ans)))
+                    arr_O[i].innerHTML = ans;
+
+            }
+
+
+        }
+
+
+
+
+        //document.write(" <br> heelo in oper");
+
+    </script>
+
+</body>
+
+</html>
